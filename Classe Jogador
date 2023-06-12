@@ -1,0 +1,82 @@
+package exerciciogitfacul;
+
+public class Jogador {
+
+	// atributos da classe
+	private int idJogador;
+	private String nome;
+	private String nickname;
+	private String nomeDaFuncao;
+	private String tipoDeArma;
+
+	public Jogador() { // construtor default;
+
+	}
+
+	// contruto passando todos os atributos
+	public Jogador(int idJogador, String nome, String nickname, String tipoDeArma, String nomeDaFuncao) {
+		// criação dos 'this' para referenciar os proprios objetos
+		this.idJogador = idJogador;
+		this.nome = nome;
+		this.nickname = nickname;
+		this.nomeDaFuncao = nomeDaFuncao;
+		this.tipoDeArma = tipoDeArma;
+	}
+
+	// Getters e Setters
+	public int getIdJogador() {
+		return idJogador;
+	}
+
+	public void setIdJogador(int idJogador) {
+		this.idJogador = idJogador;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getNomeDaFuncao() {
+		return nomeDaFuncao;
+	}
+
+	public void setNomeDaFuncao(String nomeDaFuncao) {
+		this.nomeDaFuncao = nomeDaFuncao;
+	}
+
+	public String getTipoDeArma() {
+		return tipoDeArma;
+	}
+
+	public void setTipoDeArma(String tipoDeArma) {
+		this.tipoDeArma = tipoDeArma;
+	}
+
+	@Override
+	public String toString() {
+		return "Jogador [Id do Jogador: " + idJogador + ", nome: " + nome + ", Nickname: " + nickname + ", Nome da função: "
+				+ nomeDaFuncao + ", Tipo de arma: " + tipoDeArma + "]";
+	}
+	
+	public String listar() {
+		String s = "|Id do jogador: " + getIdJogador();
+		s +="\n\n|Nome do usuario do jogo: " + getNome();
+		s +="\n\n|Nickname do jogador: " + getNickname();
+		s +="\n\n|Arma escolhida pelo jogador: " + getTipoDeArma();
+		s +="\n\n|Função do jogador: " + getNomeDaFuncao();
+		return s;
+	}
+
+}
