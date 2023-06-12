@@ -1,0 +1,727 @@
+package exerciciogitfacul;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Iterator;
+
+public class JogadorTestP2 {
+
+	public static void main(String[] args) {
+
+		int opcao;// Variavel 'opcao' que sera usada na nossa estrutura de repeticao
+		Scanner sc = new Scanner(System.in);
+
+		// ArrayList usados para armazenar os jogadores
+		ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+
+		// 11 Jogadores que ja estao cadastrados automaticamente no programa
+		jogadores.add(new Jogador(1211, "Pedro", "PEdro,44.pp", "ESPADA", "tank"));
+		jogadores.add(new Jogador(1212, "Felipe", "Felps.22", "Machado", "lutador"));
+		jogadores.add(new Jogador(1213, "Marcelo", "Marcell.44-jg", "arco", "atirador"));
+		jogadores.add(new Jogador(1214, "Lucas", "Lusca.99-LL", "Adaga", "Paladino"));
+		jogadores.add(new Jogador(1215, "Artur", "Artur.king", "cajado", "mago"));
+		jogadores.add(new Jogador(1216, "Elisa", "Elisa.killer", "Rifle", "Franco-atirador"));
+		jogadores.add(new Jogador(1217, "Camille", "Camille-xd.22", "katana", "ninja"));
+
+		// Jogadores Premium, com atributos diferentes dos jogadores comuns
+		jogadores.add(new JogadorPremium(1311, "João", "JPdro.Tp-33", "ESPADA", "tank", "Escudo", "Insendiar"));
+		jogadores.add(new JogadorPremium(1312, "Caio", "cAio-XP22", "Machado", "lutator", "Martelo", "Curar"));
+		jogadores.add(new JogadorPremium(1313, "Marlon", "Fordo2022", "Lança", "lutator", "Manopla", "Teleporte"));
+		jogadores.add(new JogadorPremium(1314, "Ana", "Ana-SS.21", "cajado", "mago", "Escudo", "barreira"));
+
+		do { // Inicio da estrutra de repetição do Menu de opções
+
+			// Mostrando o menu de opções para o usuario
+			System.out.println("\n[]BEM VIDO AO MENU DE OPÇÕES[]");
+			System.out.println("\n|°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°|");
+			System.out.println("|#      ***SELECIONE UMA OPÇÃO***         #|");
+			System.out.println("|°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°|");
+			System.out.println("|1 - Cadastrar jogador                     |");
+			System.out.println("|2 - Listar jogadores                      |");
+			System.out.println("|3 - Remover jogador                       |");
+			System.out.println("|4 - Pesquisar jogador pelo ID             |");
+			System.out.println("|5 - Modificar registros do jogador        |");
+			System.out.println("|6 - Ordenar jogadores                     |");
+			System.out.println("|0 - Sair                                  |");
+			System.out.println("|°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°|");
+			System.out.println("|*----------------------------------------*|");
+
+			while (true) { // esse loop while solicita repetidada mente ao usuario que digite um numero
+							// inteiro
+
+				System.out.print("|¨|¨|¨|¨Digite sua opção aqui|¨|¨|¨|¨ -> "); // Mostra ao usuario onde digitar a sua
+																				// opção;
+
+				if (sc.hasNextInt()) {// se a sua entrada for um numero interiro, ela é atribuida á variavel 'opcao'
+					opcao = sc.nextInt();
+					break; // e o loop é encerrado com o break;
+
+				} else {// caso a entrada não seja um numero inteiro, essa mensagem é exibida
+					System.err.println("\nPor favor, digite somente números inteiros disponíveis no Menu.");
+					sc.next();// e o sc.next é usado para descartar a entrada invalida.
+
+					// O LOOP CONTINUA ATÉ QUE UM NUMERO INTEIRO VALIDO SEJA DIGITADO;
+				}
+			}
+
+			// Mostra ao usuario a opção que ele escolheu antes da execução da sua escolha
+			System.out.println("VOCÊ SELECIONOU A OPÇÃO: " + opcao);
+
+			// switch case com as opções para o usuario escolher;
+			switch (opcao) {
+			case 1:
+				cadastrar(jogadores);
+				break;
+			case 2:
+				listar(jogadores);
+				break;
+			case 3:
+				remover(jogadores);
+				break;
+			case 4:
+				pesquisarJg(jogadores);
+				break;
+			case 5:
+				modificarRegistro(jogadores);
+				break;
+			case 6:
+				ordenar(jogadores);
+				break;
+
+			default:// caso o numero digitado nao seja os numeros no menu
+				System.err.println("\nOPÇÃO INDISPONÍVEL, TENTE OUTRA OPÇÃO.");
+			}
+
+		} while (opcao != 0); // Final da estrutuda de repetição. Que sera repetida enquanto a opcao for
+								// diferente de 5;
+		// se for igual a 5, o programa é encerrado
+
+		sc.close();// Fecha o objeto 'Scanner' para liberar os recursos do sistema
+
+	}
+
+	// Metodo usado para cadastrar um jogador
+	public static void cadastrar(ArrayList<Jogador> jogadores) { // passando como argumento o "ArrayList<Jogador>
+																	// jogadores"
+
+		Scanner sc = new Scanner(System.in);
+
+		int idJogador;
+		String nome, tipoDeArma, nickname, nomeDaFuncao;
+
+		Jogador jg; // dando um nome ao objeto 'Jogador' , que sera usado durante o codigo;
+
+		while (true) {
+			System.out.println("Escolha um numero para ser seu ID: ");
+			if (sc.hasNextInt()) {
+				idJogador = sc.nextInt();// leitura do id do jogador
+				break;
+			} else {
+				System.out.println("Por favor, digite somente números para o ID");
+				sc.next();
+			}
+		}
+
+		System.out.println("Informe o seu primeiro nome: ");
+		sc.nextLine();
+		nome = sc.nextLine();// leitura do primeiro nome do jogador
+
+		System.out.println("Informe a função que deseja ter no jogo: ");
+		nomeDaFuncao = sc.nextLine();// leitura da função informada pelo usuario
+
+		System.out.println("Escreva o nome da arma que deseja usar: ");
+		tipoDeArma = sc.nextLine();// leitura do nome da arma informada pelo usuario
+
+		System.out.println("Digite o seu nickname para usar no jogo: ");
+		nickname = sc.nextLine();// leitura do nickname do usuario
+
+		jg = new Jogador(idJogador, nome, nickname, tipoDeArma, nomeDaFuncao);// Cria uma instância do objeto
+																				// Jogador, que recebe 5 argumentos;
+
+		System.out.println("O jogador é premium? (s|n):");
+		String confirmacao = sc.next();
+
+		if (confirmacao.equalsIgnoreCase("s")) {
+
+			String armaSegundaria, additionalSpell;
+
+			System.out.println("Digite qual arma seundaria quer usar: ");
+			sc.nextLine();
+			armaSegundaria = sc.nextLine();
+
+			System.out.println("Digite uma spell para usar no jogo: ");
+			additionalSpell = sc.nextLine();
+
+			jg = new JogadorPremium(idJogador, nome, nickname, tipoDeArma, nomeDaFuncao, armaSegundaria,
+					additionalSpell);// Cria uma instância do objeto Jogador, que recebe 5 argumentos;
+
+			jogadores.add(jg);// adiciona o jogador no ArrayList
+			System.out.println("\nJogador Premium cadastrado com sucesso!!");// Mensagem para confirmar o cadastramento
+
+		} else {
+			System.out.println("Você optou por cadastrar jogador comum.");
+			jogadores.add(jg);// adiciona o jogador no ArrayList
+			System.out.println("Jogador cadastrado com sucesso!!");// Mensagem para confirmar o cadastramento
+		}
+
+	}
+
+	// Metodo usado para remover um jogador que sera buscado usando o metodo
+	// localizar
+	public static void remover(ArrayList<Jogador> jogadores) { // passando como argumento o "ArrayList<Jogador>
+																// jogadores"
+		Scanner sc = new Scanner(System.in);
+
+		int id;
+		Jogador jg;
+		System.out.println("Informe Id do jogador que sera removido: ");
+		id = sc.nextInt(); // leitura do id do jogador
+
+		jg = localizar(id, jogadores);// Usa o metodo localizar para encontrar um Id para remover, passando como
+										// argumentos o id informado, e o nome do ArrayList(jogadores);
+
+		if (jg != null) { // se a variavel 'jg' for diferente de null, o programa remove o ID informado e
+							// mostra a mensagem de confirmação
+
+			System.err.println("Quer mesmo remover o jogador? (s|n)");// pergunta ao usuario se ele quer mesmo remover o
+																		// jogador
+			String confirmacao = sc.next();
+
+			// usando o equalsIgnoreCase para poder digitar o 's' maiusculo ou minusculo
+			if (confirmacao.equalsIgnoreCase("s")) { // se a confirmação for igual a 's' ou 'S', sera executado a ação
+														// para remover o jogador
+
+				jogadores.remove(jg);// remove o id informado na leitura
+				System.out.println("ID removido: " + jg.getIdJogador() + " -> " + " Esse jogador foi removido!!");// //
+																													// Mensagem
+																													// mostrando
+																													// qual
+																													// foi
+																													// o
+																													// Id
+																													// removido
+																													// pelo
+																													// usuario
+
+			} else { // caso a opcao do usuario seja diferente de 'S';
+				System.out.println("Remoção cancelada pelo usuario.");// sera exibida a mensagem
+			}
+
+		} else { // se o metodo localizar nao encotrar o id cadastrado
+			System.out.println("Jogador não encontrado."); // sera exibida a mensagem
+		}
+	}
+
+	// Metodo lista, usado para mostrar os dados cadastrados pelo usuario
+	public static void listar(ArrayList<Jogador> jogadores) { // passando como argumento o "ArrayList<Jogador>
+																// jogadores"
+		Scanner sc = new Scanner(System.in);
+
+		for (Jogador jg : jogadores) { // for para percorrer os dados do ArrayList e mostrar a lista de jogadores
+										// cadastrados
+			System.out.println(jg.listar() + "\n\n----------------------");
+		}
+
+	}
+
+	public static void ordenar(ArrayList<Jogador> jogadores) {
+
+		// Usando o Collections.sort para
+		// Ordenar os jogadores em ordem alfabetica pelo primeiro nome
+		// usando a expressao lambda para comparar dois jogadores (jogador1.getNome(),
+		// jogador2.getNome()) com base nos seus nomes
+		Collections.sort(jogadores, (jogador1, jogador2) -> jogador1.getNome().compareTo(jogador2.getNome()));
+		// o Metodo compareTo é chamado no nome de cada item da lista, e retorna a ordem
+		// de classsificação do jogadores
+		// o resultado da comparação é usado pelo 'sort' para organizar os nomes em
+		// ordem alfabetica;
+
+		// for usasado para exibir os Jogadores Ordenados
+		// acessados pelo toString;
+		for (Jogador jg : jogadores) {
+			System.out.println(jg.toString() + "\n-----------------------");
+		}
+	}
+
+	public static void pesquisarJg(ArrayList<Jogador> jogadores) { // passando como argumento o "ArrayList<Jogador>
+																	// jogadores"
+
+		Scanner sc = new Scanner(System.in);
+
+		int id;
+		Jogador jg;
+
+		boolean encontrou = false; // variavel booleana para verificar se o jogador foi encotrado
+		System.out.println("Informe o ID do jogador para pesquisar: ");
+		id = sc.nextInt(); // leitura do id do jogador
+
+		Iterator<Jogador> itera = jogadores.iterator(); // Iterator usado pra acessar cada elemento de uma coleção
+														// 'jogadores'
+
+		while (itera.hasNext()) { // hasNext dentro de um while verifica se ainda exitem elementos na coleção para
+									// serem iterados.
+									// Esse while que inicia um loop que ira iterar enquanto tiver elementos para
+									// percorrer;
+
+			jg = itera.next(); // Dentro do loop, é obtido o próximo elemento da coleção '.next()' ,
+								// usado para mostrar o proximo elemento a ser pesquisado;
+
+			if (jg.getIdJogador() == id) { // verificação do Id, se for igual ao cadastrado pelo usuario, o que estiver
+											// dentro do if sera executado
+
+				// Mostrando o jogador encontrado conforme o seu ID;
+				System.out.println("\nJogador encontrado!!!");
+				System.out.println(jg.listar() + "\n");
+
+				System.out.println("\n|------------------------------------------------------|");
+				encontrou = true; // se o id for encontrado a variavel booleana 'encontrou' recebera true;
+				break;
+			}
+		}
+		if (!encontrou) { // se for diferente de 'encontrou' , sera mostrado que o jogador nao foi
+							// encontrado, o usuario podera tentar novamente no Menu de Opcoes;
+			System.out.println("O jogador não foi encontrado, tente novamente cadastrando o jogador");
+		}
+
+	}
+
+	public static void modificarRegistro(ArrayList<Jogador> jogadores) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int option;
+		int modificarJogador;
+
+		System.out.println("Escolha o tipo de jogador para fazer a mudança de registro:");
+		System.out.println("1 - Jogador comum");
+		System.out.println("2 - Jogador Premium");
+		System.out.print("\nOpção 1 ou 2 ? ->");
+		modificarJogador = sc.nextInt();
+
+		if (modificarJogador == 1) {
+			System.out.println("***Escolha qual registro quer modificar***");
+			System.out.println("1 - Id");
+			System.out.println("2 - Primeiro Nome");
+			System.out.println("3 - nickname");
+			System.out.println("4 - Nome da Função");
+			System.out.println("5 - Tipo de arma");
+			System.out.print("\n|¨|¨|¨|¨Digite sua opção aqui|¨|¨|¨|¨ -> ");
+			option = sc.nextInt();
+
+			switch (option) {
+
+			case 1:
+
+				int novoId;
+				int id1;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id1 = sc.nextInt();
+
+				Jogador jg1 = localizar(id1, jogadores); // localiza o jogador comum com base no ID, para possibilitar a
+															// alteração do seu ID
+
+				if (jg1 != null) {
+					System.out.println("Registro encontrado: ");// confirma a busca do registro
+					System.out.println(jg1.toString());// mostra os dados atuais, exibidos pelo toString
+
+					// Solicitar as novas informações do jogador ao usuário
+					System.out.print("Informe o novo ID do jogador: ");
+					novoId = sc.nextInt();
+
+					jg1.setIdJogador(novoId); // altera o Id inserido
+
+					System.out.println("ID modificado com sucesso!");
+					System.out.println(jg1.toString());// mostra o registro modificado, exibido pelo toString;
+
+				} else { // caso nao seja um jogador cadastrado
+					System.out.println("Jogador não localizado!");// sera mostrado essa mensagem na tela
+				}
+				break;
+
+			case 2:
+
+				String novoNome;
+				int id2;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id2 = sc.nextInt();
+
+				Jogador jg2 = localizar(id2, jogadores);
+
+				if (jg2 != null) {
+					System.out.println("Registro encontrado: ");
+					System.out.println(jg2.toString());
+
+					System.out.print("Informe o novo nome do jogador: ");
+					sc.nextLine();
+					novoNome = sc.nextLine();
+
+					jg2.setNome(novoNome);
+
+					System.out.println("Nome modificado com sucesso!");
+					System.out.println(jg2.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 3:
+
+				String novoNickname;
+				int id;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id = sc.nextInt();
+
+				Jogador jg = localizar(id, jogadores); // localiza o jogador comum com base no ID, para possibilitar a
+														// alteração do seu nome
+
+				if (jg != null) {
+					System.out.println("Registro encontrado: ");
+					System.out.println(jg.toString()); // mostra os dados atuais, exibidos pelo toString
+
+					// Solicitar as informações atualizadas do jogador ao usuário
+					System.out.print("Informe o novo nickname do jogador: ");
+					sc.nextLine();
+					novoNickname = sc.nextLine();
+
+					// Atualiza as informaçoes do jogador
+					jg.setNickname(novoNickname);
+
+					System.out.println("Nickname modificado com sucesso!");// confirmacao da modificaocao
+					System.out.println(jg.toString());
+				} else { // caso nao seja um jogador cadastrado
+					System.out.println("Jogador não localizado!");// sera mostrado essa mensagem na tela
+				}
+				break;
+
+			case 4:
+
+				String novoNomeFuncao;
+				int id4;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id4 = sc.nextInt();
+
+				Jogador jg4 = localizar(id4, jogadores);
+
+				if (jg4 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg4.toString());
+
+					System.out.print("Informe o novo nome da função: ");
+					novoNomeFuncao = sc.next();
+
+					jg4.setNomeDaFuncao(novoNomeFuncao);
+
+					System.out.println("Função alterada com sucesso!");
+					System.out.println(jg4.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 5:
+
+				String novaArma;
+				int id5;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id5 = sc.nextInt();
+
+				Jogador jg5 = localizar(id5, jogadores);
+
+				if (jg5 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg5.toString());
+
+					System.out.print("Informe a sua nova arma: ");
+					novaArma = sc.next();
+
+					jg5.setTipoDeArma(novaArma);
+
+					System.out.println("Arma alterada com sucesso!");
+					System.out.println(jg5.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			}
+
+		} else if (modificarJogador == 2) {
+
+			// Mostra o menu de possiveis modificações para o Jogador premium, que contem
+			// dois atributos adicionais que podem ser modificados
+			System.out.println("***Escolha qual registro quer modificar***");
+			System.out.println("1 - Id");
+			System.out.println("2 - Primeiro Nome");
+			System.out.println("3 - nickname");
+			System.out.println("4 - Nome da Função");
+			System.out.println("5 - Tipo de arma");
+			System.out.println("6 - Arma segundaria");
+			System.out.println("7 - Feitiço adicional");
+			System.out.print("\n|¨|¨|¨|¨Digite sua opção aqui|¨|¨|¨|¨ -> ");
+			option = sc.nextInt();
+			switch (option) {
+
+			case 1:
+
+				int novoId;
+				int id1;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id1 = sc.nextInt();
+
+				JogadorPremium jg1 = (JogadorPremium) localizarPremium(id1, jogadores);
+
+				if (jg1 != null) {
+					System.out.println("Registro encontrado: ");
+					System.out.println(jg1.toString());
+
+					System.out.print("Informe o novo ID do jogador: ");
+					novoId = sc.nextInt();
+
+					jg1.setIdJogador(novoId);
+
+					System.out.println("ID modificado com sucesso!");
+					System.out.println(jg1.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 2:
+
+				String novoNome;
+				int id2;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id2 = sc.nextInt();
+
+				JogadorPremium jg2 = (JogadorPremium) localizarPremium(id2, jogadores);
+
+				if (jg2 != null) {
+					System.out.println("Registro encontrado: ");
+					System.out.println(jg2.toString());
+
+					System.out.print("Informe o novo nome do jogador: ");
+					sc.nextLine();
+					novoNome = sc.nextLine();
+
+					jg2.setNome(novoNome);
+
+					System.out.println("Nome modificado com sucesso!");
+					System.out.println(jg2.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 3:
+
+				String novoNickname;
+				int id;
+
+				System.out.println("\nInforme o ID do jogador que vai ser modificado: ");
+				id = sc.nextInt();
+
+				JogadorPremium jg = (JogadorPremium) localizarPremium(id, jogadores); // localiza o jogador comum com
+																						// base no ID, para possibilitar
+																						// a alteração do seu nome
+
+				if (jg != null) {
+					System.out.println("Registro encontrado: ");
+					System.out.println(jg.toString()); // mostra os dados atuais, exibidos pelo toString
+
+					// Solicitar as informações atualizadas do jogador ao usuário
+					System.out.print("Informe o novo nickname do jogador: ");
+					sc.nextLine();
+					novoNickname = sc.nextLine();
+
+					// Atualiza as informaçoes do jogador
+					jg.setNickname(novoNickname);
+
+					System.out.println("Nickname modificado com sucesso!");// confirmacao da modificaocao
+					System.out.println(jg.toString());
+				} else { // caso nao seja um jogador cadastrado
+					System.out.println("Jogador não localizado!");// sera mostrado essa mensagem na tela
+				}
+				break;
+
+			case 4:
+
+				String novoNomeFuncao;
+				int id4;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id4 = sc.nextInt();
+
+				JogadorPremium jg4 = (JogadorPremium) localizarPremium(id4, jogadores);
+
+				if (jg4 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg4.toString());
+
+					System.out.print("Informe o novo nome da função: ");
+					novoNomeFuncao = sc.next();
+
+					jg4.setNomeDaFuncao(novoNomeFuncao);
+
+					System.out.println("Função alterada com sucesso!");
+					System.out.println(jg4.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 5:
+
+				String novaArma;
+				int id5;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id5 = sc.nextInt();
+
+				JogadorPremium jg5 = (JogadorPremium) localizarPremium(id5, jogadores);
+
+				if (jg5 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg5.toString());
+
+					System.out.print("Informe a sua nova arma: ");
+					novaArma = sc.next();
+
+					jg5.setTipoDeArma(novaArma);
+
+					System.out.println("Arma alterada com sucesso!");
+					System.out.println(jg5.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 6:
+
+				String novaArmaSegund;
+				int id6;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id6 = sc.nextInt();
+
+				JogadorPremium jg6 = (JogadorPremium) localizarPremium(id6, jogadores);
+
+				if (jg6 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg6.toString());
+
+					System.out.print("Informe a sua nova arma segundaria: ");
+					novaArmaSegund = sc.next();
+
+					jg6.setArmaSugundaria(novaArmaSegund);
+
+					System.out.println("Arma alterada com sucesso!");
+					System.out.println(jg6.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+
+			case 7:
+
+				String novoAddSpell;
+				int id7;
+
+				System.out.println("Informe o ID do jogador que vai ser modificado: ");
+				id7 = sc.nextInt();
+
+				JogadorPremium jg7 = (JogadorPremium) localizarPremium(id7, jogadores);
+
+				if (jg7 != null) {
+					System.out.println("Registro encontrado");
+					System.out.println(jg7.toString());
+
+					System.out.print("Informe a seu nova feitiço adicional: ");
+					novoAddSpell = sc.next();
+
+					jg7.setAdditionalSpell(novoAddSpell);
+
+					System.out.println("Arma alterada com sucesso!");
+					System.out.println(jg7.toString());
+				} else {
+					System.out.println("Jogador não localizado!");
+				}
+				break;
+			}
+
+		}
+
+	}
+
+	// metodo localizar, usado para buscar o Id do jogador e usar no metodo Remover
+	public static Jogador localizar(int idJogador, ArrayList<Jogador> jogadores) { // passando como argumento um int
+																					// para 'idJogador', e tambem o
+																					// "ArrayList<Jogador> jogadores"
+
+		Iterator<Jogador> itera = jogadores.iterator(); // Iterator usado pra acessar cada elemento de uma coleção
+														// 'jogadores'
+
+		while (itera.hasNext()) { // hasNext dentro de um while verifica se ainda exitem elementos na coleção para
+									// serem iterados.
+									// Esse while que inicia um loop que ira iterar enquanto tiver elementos para
+									// percorrer;
+
+			Jogador jg = itera.next(); // Dentro do loop, é obtido o próximo elemento da coleção '.next()' , usado para
+										// mostrar o proximo elemento a ser localizado;
+
+			if (jg.getIdJogador() == idJogador) { // verificação do Id, se for igual ao cadastrado pelo usuario, o que
+													// estiver dentro do if sera executado
+
+				return jg; // Caso o jogador seja encontrado, ele é retornado como resultado da verificação
+							// do 'if';
+			}
+		}
+
+		System.out.println("Jogador precisa ser cadastrado, tente novamente."); // sera mostrado essa mensagem se os
+																				// dados do jogador não estiverem
+																				// cadastrados;
+		return null;
+	}
+
+	public static Jogador localizarPremium(int idJogador, ArrayList<Jogador> jogadores) { // passando como argumento um
+																							// int para 'idJogador', e
+																							// tambem o
+																							// "ArrayList<Jogador>
+																							// jogadores"
+
+		Iterator<Jogador> itera = jogadores.iterator(); // Iterator usado pra acessar cada elemento de uma coleção
+														// 'jogadores'
+
+		while (itera.hasNext()) { // hasNext dentro de um while verifica se ainda exitem elementos na coleção para
+									// serem iterados.
+									// Esse while que inicia um loop que ira iterar enquanto tiver elementos para
+									// percorrer;
+
+			Jogador jp = itera.next(); // Dentro do loop, é obtido o próximo elemento da coleção '.next()' , usado para
+										// mostrar o proximo elemento a ser localizado;
+
+			if (jp.getIdJogador() == idJogador) { // verificação do Id, se for igual ao cadastrado pelo usuario, o que
+													// estiver dentro do if sera executado
+
+				return jp; // Caso o jogador seja encontrado, ele é retornado como resultado da verificação
+							// do 'if';
+			}
+		}
+
+		System.out.println("Jogador precisa ser cadastrado como premium, tente novamente."); // sera mostrado essa
+																								// mensagem se os dados
+																								// do jogador não
+																								// estiverem
+																								// cadastrados;
+
+		return null;
+	}
+
+}
