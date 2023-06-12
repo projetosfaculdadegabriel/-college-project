@@ -88,7 +88,9 @@ public class JogadorTestP2 {
 			case 6:
 				ordenar(jogadores);
 				break;
-
+			case 0:
+				System.err.println("FINALIZOU O PROGRAMA!!");
+				break;
 			default:// caso o numero digitado nao seja os numeros no menu
 				System.err.println("\nOPÇÃO INDISPONÍVEL, TENTE OUTRA OPÇÃO.");
 			}
