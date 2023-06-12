@@ -1,0 +1,83 @@
+package programa2;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Alist2 {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		ArrayList<Integer> num = new ArrayList<Integer>();
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Insira os 10 numeros so list: " + (i + 1));
+			int nm = sc.nextInt();
+			num.add(nm);
+		}
+
+		System.out.println("Numeros em ordem Decrescente: ");
+		Collections.sort(num, Collections.reverseOrder());
+		for (Integer dr : num) {
+			System.out.print(dr + "| ");
+		}
+		System.out.println();
+
+		System.out.println("------------------------");
+		System.out.println("Numero em ordem Crescente: ");
+		Collections.sort(num);
+		for (Integer cr : num) {
+			System.out.print(cr + "| ");
+		}
+		System.out.println();
+
+		System.out.println("------------------------");
+		System.out.println("Removendo o menor numero:");
+		Integer menor = Collections.min(num);
+		System.out.println("Menor numero = " + menor);
+		num.remove(menor);
+		for (Integer min : num) {
+			System.out.print(min + "| ");
+		}
+		System.out.println();
+
+		System.out.println("------------------------");
+		System.out.println("Removendo o maior numero: ");
+		Integer maior = Collections.max(num);
+		System.out.println("Maior numero = " + maior);
+		num.remove(maior);
+		for (Integer max : num) {
+			System.out.print(max + "| ");
+		}
+		System.out.println();
+
+		double soma = 0;
+		for (int i = 0; i < num.size(); i++) {
+			soma += num.get(i);
+		}
+		double media = soma / num.size();
+
+		int qtdPares = 0, qtdImpares = 0, qtdMultCinco = 0;
+		for (int i = 0; i < num.size(); i++) {
+			if (num.get(i) % 2 == 0) {
+				qtdPares++;
+			}
+			if (num.get(i) % 2 != 0) {
+				qtdImpares++;
+			}
+			if (num.get(i) % 5 == 0) {
+				qtdMultCinco++;
+			}
+
+		}
+
+		System.out.println("\nSoma dos numeros restantes = " + num + " -> " + soma);
+		System.out.println("\nMedia dos numeros restantes = " + num + " -> " + media);
+		System.out.println("\nQuantidade de numeros Pares: " + qtdPares);
+		System.out.println("\nQuantidade de numero Impares: " + qtdImpares);
+		System.out.println("\nQuantidade de numero Multiplos de Cinco: " + qtdMultCinco);
+
+	}
+
+}
