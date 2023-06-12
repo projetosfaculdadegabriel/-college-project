@@ -1,0 +1,125 @@
+package matriz_tri_estudo;
+
+import java.util.Scanner;
+
+public class MatrizT3 {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int[][][][] vet = new int[2][2][2][2];
+
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						System.out.println("Entre com os valores do vetor " + "[" + (a + 1) + "]");
+						vet[a][b][c][d] = sc.nextInt();
+					}
+				}
+			}
+		}
+
+		int maior = 0;
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						if (vet[a][b][c][d] > maior) {
+							maior = vet[a][b][c][d];
+						}
+					}
+				}
+			}
+		}
+
+		int menor = vet[0][0][0][0];
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						if (vet[a][b][c][d] < menor) {
+							menor = vet[a][b][c][d];
+						}
+					}
+				}
+			}
+		}
+
+		double soma = 0, qtdNum = 0;
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						soma += vet[a][b][c][d];
+						qtdNum++;
+					}
+				}
+			}
+		}
+		double media = soma / qtdNum;
+
+		int qtdPares = 0;
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						if (vet[a][b][c][d] % 2 == 0) {
+							qtdPares++;
+						}
+					}
+				}
+			}
+		}
+
+		int qtdImpares = 0;
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						if (vet[a][b][c][d] % 2 != 0) {
+							qtdImpares++;
+						}
+					}
+				}
+			}
+		}
+
+		int multCinco = 0;
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						if (vet[a][b][c][d] % 5 == 0) {
+							multCinco++;
+						}
+					}
+				}
+			}
+		}
+
+		System.out.println("\nImprimindo os vetores: ");
+
+		for (int a = 0; a < vet.length; a++) {
+			for (int b = 0; b < vet[a].length; b++) {
+				for (int c = 0; c < vet[a][b].length; c++) {
+					for (int d = 0; d < vet[a][b][c].length; d++) {
+						System.out.print(vet[a][b][c][d] + " |");
+					}
+					System.out.println();
+				}
+				System.out.println();
+			}
+		}
+
+		System.out.println("\nSoma dos numero do vetor -> " + soma);
+		System.out.println("\nMedia dos numeros do vetor -> " + media);
+		System.out.println("\nO maior numero = " + maior);
+		System.out.println("\nO menor numero = " + menor);
+		System.out.println("\nQuantidade de numeros mutiplos de 5 -> " + multCinco);
+		System.out.println("\nQuantidade de numeros Pares -> " + qtdPares);
+		System.out.println("\nQuantidade de numeros Impares -> " + qtdImpares);
+
+	}
+}
