@@ -1,0 +1,49 @@
+package exerciciogitfacul;
+
+public class JogadorPremium extends Jogador {
+
+	private String armaSegundaria;
+	private String additionalSpell;
+
+	public JogadorPremium() {
+		super();
+	}
+
+	public JogadorPremium(int idJogador, String nome, String nickname, String tipoDeArma, String nomeDaFuncao,
+			String armaSegundaria, String additionalSpell) {
+		super(idJogador, nome, nickname, tipoDeArma, nomeDaFuncao);
+		this.armaSegundaria = armaSegundaria;
+		this.additionalSpell = additionalSpell;
+	}
+
+	public String getArmaSegundaria() {
+		return armaSegundaria;
+	}
+
+	public void setArmaSugundaria(String armaSegundaria) {
+		this.armaSegundaria = armaSegundaria;
+	}
+
+	public String getAdditionalSpell() {
+		return additionalSpell;
+	}
+
+	public void setAdditionalSpell(String additionalSpell) {
+		this.additionalSpell = additionalSpell;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "[ArmaSegundaria: " + armaSegundaria + ", additionalSpell: " + additionalSpell + "]";
+	}
+
+	@Override
+	public String listar() {
+		String s = super.listar();
+		s += "\n\n|Arma segundaria: " + getArmaSegundaria();
+		s += "\n\n|Feitiço adicional: " + getAdditionalSpell();
+		return s;
+
+	}
+
+}
