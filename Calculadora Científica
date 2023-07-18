@@ -1,0 +1,102 @@
+package logicaProgramacao;
+
+import java.util.Scanner;
+
+public class Num {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		double n1 = 0, n2 = 0, result;
+
+		char op;
+		int continuar;
+
+		do {
+
+			System.out.println("\n***Escolha uma operação***");
+			System.out.println("Soma ( + ) ");
+			System.out.println("Subtração ( - )");
+			System.out.println("Multiplicação ( * )");
+			System.out.println("Divisão ( / )");
+			System.out.println("Raiz Quadrada ( | )");
+			System.out.println("Potencia ( & )");
+			System.out.println("Sair - f");
+			System.out.print("Digite sua opção aqui -> ");
+			op = sc.next().charAt(0);
+
+			switch (op) {
+
+			case '+':
+				System.out.print("\nDigite o primeiro numero: ");
+				n1 = sc.nextDouble();
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 + n2;
+				System.out.println("\nA soma = " + result);
+				break;
+
+			case '-':
+				System.out.print("\nDigite o primeiro numero: ");
+				n1 = sc.nextDouble();
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 - n2;
+				System.out.println("\nA subtração = " + result);
+				break;
+
+			case '*':
+				System.out.print("\nDigite o primeiro numero: ");
+				n1 = sc.nextDouble();
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 * n2;
+				System.out.println("\nA multiplicação = " + result);
+				break;
+
+			case '/':
+				System.out.print("Digite o primeiro numero: ");
+				n1 = sc.nextDouble();
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 / n2;
+				System.out.println("\nA divisão = " + result);
+				break;
+
+			case '|':
+				System.out.print("Digite um numero para ver a Raiz quadrada: ");
+				n1 = sc.nextDouble();
+
+				result = Math.sqrt(n1);
+				System.out.println("\nA raiz do numero = " + result);
+				break;
+
+			case '&':
+				System.out.print("\nDigite a base para calcular a potencia: ");
+				n1 = sc.nextDouble();
+				System.out.print("Digite o expoente para calcular a potencia: ");
+				n2 = sc.nextDouble();
+
+				result = Math.pow(n1, n2);
+				System.out.println("\nA potencia = " + result);
+				break;
+
+			case 'f':
+				System.err.println("FINALIZOU O PROGRAMA!!");
+				break;
+
+			default:
+				System.err.println("\nOpção invalida tente novamente");
+				break;
+			}
+
+		} while (op != 'f');
+
+	}
+
+}
