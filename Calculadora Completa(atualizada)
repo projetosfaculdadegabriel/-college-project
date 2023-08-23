@@ -20,9 +20,9 @@ public class Num {
 			System.out.println("Multiplicação ( * )");
 			System.out.println("Raiz ( r )");
 			System.out.println("Potencia ( p )");
-			System.out.println("fatorial ( _ )");
+			System.out.println("fatorial ( f )");
 			System.out.println("Conversor Binario ( b )");
-			System.out.println("Sair - ( f )");
+			System.out.println("Sair - ( s )");
 			System.out.print("Digite a opção ->");
 			op = sc.next().charAt(0);
 
@@ -100,7 +100,7 @@ public class Num {
 
 				break;
 
-			case '_':
+			case 'f':
 
 				System.out.print("Entre com o numero pra calcular o fatorial: ");
 				n1 = sc.nextDouble();
@@ -123,7 +123,7 @@ public class Num {
 
 				break;
 
-			case 'f':
+			case 's':
 				System.out.println("FINALIZOU O PROGRAMA!!!");
 
 				break;
@@ -134,7 +134,7 @@ public class Num {
 
 			}
 
-		} while (op != 'f');
+		} while (op != 's');
 	}
 
 	public static void binaryTodecimal() {
@@ -162,4 +162,5 @@ public class Num {
 	}
 
 }
+
 
