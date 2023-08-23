@@ -1,0 +1,49 @@
+package calc;
+
+import java.util.Scanner;
+
+public class EqcSegundoGrau {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		int a, b, c;
+
+		System.out.print("Digite a: ");
+		a = sc.nextInt();
+
+		if (a == 0) {
+
+			System.out.println("Equação do 1° grau.");
+
+		} else {
+
+			double delta, x1, x2;
+
+			System.out.print("Digite b: ");
+			b = sc.nextInt();
+
+			System.out.print("Digite c: ");
+			c = sc.nextInt();
+
+			System.out.printf("\n%dx²+%d+%d\n", a, b, c);
+
+			delta = (b * b - 4 * a * c);
+
+			System.out.println("\nDelta = " + delta);
+
+			x1 = (-b + Math.sqrt(delta)) / (2 * a);
+
+			x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+			System.out.println("X1 = " + x1);
+			System.out.println("X2 = " + x2);
+
+			System.out.println("\n\nConjunto solução = " + "{" + x1 + " ; " + x2 + "}");
+
+		}
+
+	}
+
+}
