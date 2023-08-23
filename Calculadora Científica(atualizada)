@@ -1,0 +1,165 @@
+package logicaProgramacao;
+
+import java.util.Scanner;
+
+public class Num {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		double n1, n2, result;
+		char op;
+
+		do {
+
+			System.out.println("\n---Escolha uma operção---");
+			System.out.println("Soma ( + )");
+			System.out.println("Subtrção ( - )");
+			System.out.println("Divisão ( / )");
+			System.out.println("Multiplicação ( * )");
+			System.out.println("Raiz ( r )");
+			System.out.println("Potencia ( p )");
+			System.out.println("fatorial ( _ )");
+			System.out.println("Conversor Binario ( b )");
+			System.out.println("Sair - ( f )");
+			System.out.print("Digite a opção ->");
+			op = sc.next().charAt(0);
+
+			switch (op) {
+			case '+':
+
+				System.out.print("Digite o primeiro numero: ");
+				n1 = sc.nextDouble();
+
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 + n2;
+				System.err.println("A soma de " + n1 + " por " + n2 + " = " + result);
+				break;
+
+			case '-':
+
+				System.out.print("Digite o primeiro numero: ");
+				n1 = sc.nextDouble();
+
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 - n2;
+				System.err.println("A subtração de " + n1 + " por " + n2 + " = " + result);
+				break;
+
+			case '*':
+
+				System.out.print("Digite o primeiro numero: ");
+				n1 = sc.nextDouble();
+
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 * n2;
+				System.err.println("A multiplicação de " + n1 + " por " + n2 + " = " + result);
+				break;
+
+			case '/':
+
+				System.out.print("Digite o primeiro numero: ");
+				n1 = sc.nextDouble();
+
+				System.out.print("Digite o segundo numero: ");
+				n2 = sc.nextDouble();
+
+				result = n1 / n2;
+				System.err.println("A Divisão de " + n1 + " por " + n2 + " = " + result);
+				break;
+
+			case 'r':
+
+				System.out.print("Digite um numero para calcular a raiz quadrada:");
+				n1 = sc.nextDouble();
+
+				result = Math.sqrt(n1);
+
+				System.out.println("A raiz quadrada de " + n1 + " = " + result);
+
+				break;
+
+			case 'p':
+
+				System.out.print("Digite a base: ");
+				n1 = sc.nextDouble();
+
+				System.out.print("Digite o espoente: ");
+				n2 = sc.nextDouble();
+
+				result = Math.pow(n1, n2);
+
+				System.out.printf("A potencia de " + n1 + " elevado a " + n2 + " = " + result);
+
+				break;
+
+			case '_':
+
+				System.out.print("Entre com o numero pra calcular o fatorial: ");
+				n1 = sc.nextDouble();
+
+				System.out.print(n1 + "!  = ");
+
+				int fact = 1;
+				for (double i = n1; i > 0; i--) {
+					fact *= i;
+					System.out.print(i + " *" + " ");
+				}
+				System.out.println();
+
+				System.out.println("\nO fatorial de " + n1 + " = " + fact);
+				break;
+
+			case 'b':
+
+				binaryTodecimal();
+
+				break;
+
+			case 'f':
+				System.out.println("FINALIZOU O PROGRAMA!!!");
+
+				break;
+
+			default:
+				System.err.println("OPÇÃO INVALIDA, TENTE NOVAMENTE.");
+				break;
+
+			}
+
+		} while (op != 'f');
+	}
+
+	public static void binaryTodecimal() {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Digite um numero binario: ");
+		String binaryInput = sc.nextLine();
+
+		int decimalValue = binaryToDecimal(binaryInput);
+		System.out.println("O valor decimal equivalente é: " + decimalValue);
+	}
+
+	private static int binaryToDecimal(String binary) {
+
+		int decimalValue = 0;
+		int power = 0;
+
+		for (int i = binary.length() - 1; i >= 0; i--) {
+			int digit = binary.charAt(i) - '0';
+			decimalValue += digit * Math.pow(2, power);
+			power++;
+		}
+		return decimalValue;
+	}
+
+}
+
