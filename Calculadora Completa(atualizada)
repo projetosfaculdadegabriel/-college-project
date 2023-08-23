@@ -36,7 +36,7 @@ public class Num {
 				n2 = sc.nextDouble();
 
 				result = n1 + n2;
-				System.err.println("A soma de " + n1 + " por " + n2 + " = " + result);
+				System.out.println("A soma de " + n1 + " + " + n2 + " = " + result);
 				break;
 
 			case '-':
@@ -48,7 +48,7 @@ public class Num {
 				n2 = sc.nextDouble();
 
 				result = n1 - n2;
-				System.err.println("A subtração de " + n1 + " por " + n2 + " = " + result);
+				System.out.println("A subtração de " + n1 + " - " + n2 + " = " + result);
 				break;
 
 			case '*':
@@ -60,7 +60,7 @@ public class Num {
 				n2 = sc.nextDouble();
 
 				result = n1 * n2;
-				System.err.println("A multiplicação de " + n1 + " por " + n2 + " = " + result);
+				System.out.println("A multiplicação de " + n1 + " * " + n2 + " = " + result);
 				break;
 
 			case '/':
@@ -72,7 +72,7 @@ public class Num {
 				n2 = sc.nextDouble();
 
 				result = n1 / n2;
-				System.err.println("A Divisão de " + n1 + " por " + n2 + " = " + result);
+				System.out.println("A Divisão de " + n1 + " / " + n2 + " = " + result);
 				break;
 
 			case 'r':
